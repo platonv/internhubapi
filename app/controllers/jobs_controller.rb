@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
-  
+  #devise_token_auth_group :admin, contains: [:admin]
+  #before_action :authenticate_admin!
+
   def index
     @jobs = Job.all
     render json: @jobs
@@ -19,5 +21,4 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:name, :description)
   end
-
 end
