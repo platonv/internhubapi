@@ -11,6 +11,7 @@ class JobsController < ApplicationController
   api! 'Create new job'
   param :name, String, 'Job name', :required => true
   param :description, String, 'Job description', :required => true
+  param :company_id, String, 'Id of parent company(not required for now)', :required => false
   def create
     @job = Job.new(job_params)
     if @job.save
@@ -23,6 +24,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:name, :description)
+    params.require(:job).permit(:name, :description, :company_id)
   end
 end
