@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   mount_devise_token_auth_for 'Company', at: 'company_auth'
 
-  mount_devise_token_auth_for 'Student', at: 'student_auth'
+  mount_devise_token_auth_for 'Student', at: 'student_auth', controllers: {
+    registrations: 'students/registrations'
+  }
 
   mount_devise_token_auth_for 'University', at: 'university_auth'
 
