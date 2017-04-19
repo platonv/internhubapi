@@ -3,7 +3,9 @@ Rails.application.routes.draw do
    
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
 
-  mount_devise_token_auth_for 'Company', at: 'company_auth'
+  mount_devise_token_auth_for 'Company', at: 'company_auth', controllers: {
+    registrations: 'companies/registrations'
+  }
 
   mount_devise_token_auth_for 'Student', at: 'student_auth', controllers: {
     registrations: 'students/registrations'

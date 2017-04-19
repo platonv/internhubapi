@@ -1,23 +1,21 @@
-module Students
+module Companies
   class RegistrationsController < DeviseTokenAuth::RegistrationsController
     resource_description do
-      short "Students"
-    end
-      
+      short "Companies"
     end
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-    api! "Register new student"
+    api! "Register new company"
     def create
       super
     end
 
-    api! "Update student"
+    api! "Update company"
     def update
       super
     end
 
-    api! "Delete student"
+    api! "Delete company"
     def destroy
       super
     end
@@ -25,7 +23,7 @@ module Students
     protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :first_name, :last_name])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password])
     end
   end
 end
