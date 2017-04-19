@@ -1,10 +1,5 @@
 module Students
   class RegistrationsController < DeviseTokenAuth::RegistrationsController
-    resource_description do
-      short "Students"
-    end
-      
-    end
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     api! "Register new student"
