@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     registrations: 'students/registrations'
   }
 
-  mount_devise_token_auth_for 'University', at: 'university_auth'
+  mount_devise_token_auth_for 'University', at: 'university_auth', controllers: {
+    registrations: 'universities/registrations'
+  }
 
   as :university do
     # Define routes for University within this block.
