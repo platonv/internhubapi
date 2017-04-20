@@ -13,13 +13,17 @@ class JobsController < ApplicationController
   param :description, String, 'Job description', :required => true
   param :company_id, String, 'Id of parent company(not required for now)', :required => false
   def create
-    @job = Job.new(job_params)
-    if @job.save
-      render "Success"
+    @company = Company.first
+    if @company.present?
+      @job = @company.jobs.create(job_params)
+      if @job.save
+        render "Success"
+      else
+        render "Fail"
+      end
     else
-      render "Fail"
+      render "No company"
     end
-  end
 
   private
 
