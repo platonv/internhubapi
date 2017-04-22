@@ -20,7 +20,7 @@ module Companies
     protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password])
     end
   end
 end
