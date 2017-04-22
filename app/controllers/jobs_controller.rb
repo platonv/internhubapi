@@ -15,9 +15,9 @@ class JobsController < ApplicationController
   def create
     @job = current_member.jobs.create(job_params)
     if @job.save
-      render "Success"
+      render json: @job
     else
-      render "Fail"
+      render "Error"
     end
   end
 

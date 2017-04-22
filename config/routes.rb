@@ -18,12 +18,15 @@ Rails.application.routes.draw do
   as :university do
     # Define routes for University within this block.
   end
+
   as :student do
     # Define routes for Student within this block.
   end
+
   as :company do
-    # Define routes for Company within this block.
+     #post 'jobs', to: 'jobs#create'
   end
+
   as :admin do
     # Define routes for Admin within this block.
   end
