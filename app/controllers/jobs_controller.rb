@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-  #devise_token_auth_group :admin, contains: [:admin]
-  #before_action :authenticate_admin!
+  devise_token_auth_group :member, contains: [:admin, :company]
+  before_action :authenticate_member!
 
   api! 'List all jobs'
   def index
@@ -13,17 +13,13 @@ class JobsController < ApplicationController
   param :description, String, 'Job description', :required => true
   param :company_id, String, 'Id of parent company(not required for now)', :required => false
   def create
-    @company = Company.first
-    if @company.present?
-      @job = @company.jobs.create(job_params)
-      if @job.save
-        render "Success"
-      else
-        render "Fail"
-      end
+    @job = current_member.jobs.create(job_params)
+    if @job.save
+      render "Success"
     else
-      render "No company"
+      render "Fail"
     end
+  end
 
   private
 
