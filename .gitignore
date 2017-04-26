@@ -1,3 +1,6 @@
+# MAC shit
+.DS_Store
+
 *.rbc
 capybara-*.html
 .rspec
