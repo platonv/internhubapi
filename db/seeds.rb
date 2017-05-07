@@ -1,4 +1,4 @@
-Student.create({ email: "student@student.com", password: "123456"})
-Company.create({ email: "company@company.com", password: "123456"})
-Admin.create({ email: "admin@admin.com", password: "123456"})
-University.create({ email: "university@university.com", password: "123456"})
+student = Student.create({ email: "student@student.com", password: "123456"})
+company = Company.create({ email: "company@company.com", password: "123456"})
+admin = Admin.create({ email: "admin@admin.com", password: "123456"})
+university = University.create({ email: "university@university.com", password: "123456"})

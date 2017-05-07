@@ -1,4 +1,4 @@
 class Job < ApplicationRecord
   belongs_to :company
-  has_many :applicaitons
+  has_many :applications
 end
