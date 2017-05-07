@@ -6,4 +6,5 @@ describe ApplicationsController do
     it "fails for anonymous" do
     end
   end
+
 end

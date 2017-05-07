@@ -17,13 +17,38 @@ describe JobsController do
       expect(response).to be_success
     end
 
+  it "successes for company" do
+      company = Company.create(email: 'test@test.com', password: '123456')
+      auth_headers = company.create_new_auth_token
+      company.save
+      get :index, auth_headers
+      expect(response).to be_succes
+    end
+
+
   end
 
-  describe "POST create" do
+  describe "POST create as admin" do
     let (:job) { FactoryGirl.build(:job)}
 
-    it "renders success" do
+    before do
+      company = Company.create(email: 'test@test.com', password: '123456')
+      auth_headers = company.create_new_auth_token
+      company.save
+      request.headers.merge!(auth_headers)
       post :create, job: FactoryGirl.attributes_for(:job)
+      expect(response).to be_success
+    end
+
+    it "returns HTTP success" do
+      expect(response).to be_success
+    end
+
+    it "returns posted entity" do
+      job = FactoryGirl.build(:job)
+      parsed = JSON.parse(response.body)
+      expect(parsed['name']).to eq(job.name)
+      expect(parsed['description']).to eq(job.description)
     end
 
   end

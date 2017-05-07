@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  devise_token_auth_group :member, contains: [:admin, :company]
+  devise_token_auth_group :member, contains: [:admin, :company, :student]
   before_action :authenticate_member!
 
   api! 'List all jobs'
@@ -9,9 +9,6 @@ class JobsController < ApplicationController
   end
 
   api! 'Create new job'
-  param :name, String, 'Job name', :required => true
-  param :description, String, 'Job description', :required => true
-  param :company_id, String, 'Id of parent company(not required for now)', :required => false
   def create
     @job = current_member.jobs.create(job_params)
     if @job.save
