@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   apipie
-   
+
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
 
   mount_devise_token_auth_for 'Company', at: 'company_auth', controllers: {
@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   end
 
   resources :jobs
+  resources :applications
 end
