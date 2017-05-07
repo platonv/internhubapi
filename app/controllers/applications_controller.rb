@@ -3,7 +3,7 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_member!
 
   api! 'Create new application'
-  param :job_id, 'Job id', :required => true
+  param :job_id, Int, 'Job id', :required => true
   def create
     job = Job.find(application_params[:job_id])
     @application = current_member.applications.create(job: job)
@@ -14,9 +14,21 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  api! 'Delete application'
+  param :id, Int, 'Application id', :required => true
+  def delete
+    @application = Application.find(application_params[:id])
+    if @application.delete
+      render "Deleted"
+    else
+      render "Error"
+    end
+  end
+
+
   private
 
-  def application_params
-    params.require(:application).permit(:job_id)
+  def create_params
+    params.require(:application).permit(:id, :job_id)
   end
 end
