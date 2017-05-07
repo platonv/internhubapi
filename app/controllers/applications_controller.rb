@@ -5,6 +5,13 @@ class ApplicationsController < ApplicationController
   api! 'Create new application'
   param :job_id, String, 'Job id', :required => true
   def create
+    job = Job.find(application_params[:job_id])
+    @application = current_member.applications.create(job: job)
+    if @application.save
+      render json: @application
+    else
+      render "Error"
+    end
   end
 
   private
