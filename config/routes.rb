@@ -20,11 +20,15 @@ Rails.application.routes.draw do
   end
 
   as :student do
-    # Define routes for Student within this block.
+    namespace :students do
+      get 'applications', :to => 'students#applications'
+    end
   end
 
   as :company do
-     #post 'jobs', to: 'jobs#create'
+    namespace :jobs do
+      get 'applications', :to => 'jobs#applications'
+    end
   end
 
   as :admin do
