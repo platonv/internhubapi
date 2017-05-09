@@ -35,6 +35,6 @@ Rails.application.routes.draw do
     # Define routes for Admin within this block.
   end
 
-  resources :jobs
-  resources :applications
+  resources :jobs, module: 'jobs'
+  resources :applications, module: 'applications'
 end

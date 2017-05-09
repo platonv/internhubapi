@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe JobsController do
+describe Jobs::JobsController do
 
   describe "GET jobs" do
 

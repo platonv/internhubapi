@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ApplicationsController do
+describe Applications::ApplicationsController do
 
   describe "POST create as anonymouse" do
     before do
