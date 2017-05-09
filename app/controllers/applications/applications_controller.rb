@@ -4,7 +4,7 @@ module Applications
     before_action :authenticate_member!
 
     api! 'Create new application'
-    #param :job_id, Integer, 'Job id', :required => true
+    param :job_id, Integer, 'Job id', :required => true
     def create
       job = Job.find(application_params[:job_id])
       @application = current_member.applications.create(job: job)
@@ -16,7 +16,7 @@ module Applications
     end
 
     api! 'Delete application'
-    #param :id, Integer, 'Application id', :required => true
+    param :id, Integer, 'Application id', :required => true
     def delete
       @application = Application.find(application_params[:id])
       if @application.delete
