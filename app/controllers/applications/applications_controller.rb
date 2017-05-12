@@ -28,7 +28,7 @@ module Applications
 
     private
 
-    def create_params
+    def application_params
       params.require(:application).permit(:id, :job_id)
     end
   end
