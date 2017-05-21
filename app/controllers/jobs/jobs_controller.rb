@@ -3,7 +3,7 @@ module Jobs
     devise_token_auth_group :member, contains: [:admin, :company, :student]
     before_action :authenticate_member!
 
-    api! 'List all jobs'
+    api! 'List all jobs posted by current company'
     def index
       @jobs = current_member.jobs
       render json: @jobs
