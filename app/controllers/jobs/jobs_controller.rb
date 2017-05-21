@@ -3,9 +3,13 @@ module Jobs
     devise_token_auth_group :member, contains: [:admin, :company, :student]
     before_action :authenticate_member!
 
-    api! 'List all jobs posted by current company'
+    api! 'List all jobs'
     def index
-      @jobs = current_member.jobs
+      if current_company
+        @jobs = current_member.jobs
+      elsif current_student
+        @jobs = Job.all
+      end
       render json: @jobs
     end
 
@@ -21,7 +25,11 @@ module Jobs
 
     api! 'Get job'
     def show
-      @job = current_member.jobs.find(params[:id])
+      if current_company
+        @job = current_member.jobs.find(params[:id])
+      elsif current_student
+        @job = Job.find(params[:id])
+      end
       render json: @job
     end
 
