@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   apipie
 
+  resources :jobs, module: 'jobs' do
+    member do
+      get :applications
+    end
+  end
+  resources :applications, module: 'applications', only: [:index, :create, :delete]
+
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
 
   mount_devise_token_auth_for 'Company', at: 'company_auth', controllers: {
@@ -15,26 +22,4 @@ Rails.application.routes.draw do
     registrations: 'universities/registrations'
   }
 
-  as :university do
-    # Define routes for University within this block.
-  end
-
-  as :student do
-    namespace :students do
-      get 'applications', :to => 'students#applications'
-    end
-  end
-
-  as :company do
-    namespace :jobs do
-      get 'applications', :to => 'jobs#applications'
-    end
-  end
-
-  as :admin do
-    # Define routes for Admin within this block.
-  end
-
-  resources :jobs, module: 'jobs'
-  resources :applications, module: 'applications'
 end

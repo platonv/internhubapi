@@ -3,6 +3,15 @@ module Applications
     devise_token_auth_group :member, contains: [:admin, :company, :student]
     before_action :authenticate_member!
 
+    def index
+      if current_company
+        @applications = current_member.jobs.map { |job| job.applications }.flatten
+      elsif current_student
+        @applications = current_member.applications
+      end
+      render json: @applications
+    end
+
     api! 'Create new application'
     param :job_id, Integer, 'Job id', :required => true
     def create

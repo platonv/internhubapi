@@ -19,9 +19,15 @@ module Jobs
       end
     end
 
+    api! 'Get job'
+    def show
+      @job = Job.find(params[:id])
+      render json: @job
+    end
+
     api! 'Get applications for job'
     def applications
-      @applications = current_member.jobs.find(job_params[:id]).applications
+      @applications = current_member.jobs.find(params[:id]).applications
       render json: @applications
     end
 
