@@ -5,7 +5,7 @@ module Jobs
 
     api! 'List all jobs'
     def index
-      @jobs = Job.all
+      @jobs = current_member.jobs
       render json: @jobs
     end
 
@@ -21,7 +21,7 @@ module Jobs
 
     api! 'Get job'
     def show
-      @job = Job.find(params[:id])
+      @job = current_member.jobs.find(params[:id])
       render json: @job
     end
 
