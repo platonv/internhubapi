@@ -3,6 +3,7 @@ module Applications
     devise_token_auth_group :member, contains: [:admin, :company, :student]
     before_action :authenticate_member!
 
+    api! 'Gets posted application for company and all applications for student'
     def index
       if current_company
         @applications = current_member.jobs.map { |job| job.applications }.flatten
