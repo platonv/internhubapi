@@ -10,7 +10,8 @@ module Applications
       elsif current_student
         @applications = current_member.applications
       end
-      render json: @applications
+      result = @applications.map { |application| { "id":application.id, "student": application.student, "job": application.job } }
+      render json: result
     end
 
     api! 'Create new application'
