@@ -36,7 +36,8 @@ module Jobs
     api! 'Get applications for job'
     def applications
       @applications = current_member.jobs.find(params[:id]).applications
-      render json: @applications
+      result = applications.map { |application| { "id":application.id, "student": application.student, "job": application.job } }
+      render json: result
     end
 
     private
