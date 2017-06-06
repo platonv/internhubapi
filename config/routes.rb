@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       get :applications
     end
   end
+
+  scope :module => 'accounts' do
+    get '/current_account', to: 'current_account#get_current_account'
+  end
+
   resources :applications, module: 'applications', only: [:index, :create, :delete]
 
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
